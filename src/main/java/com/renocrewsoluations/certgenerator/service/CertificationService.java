@@ -10,12 +10,14 @@ import com.renocrewsoluations.certgenerator.repository.CertificationRepository;
 
 public class CertificationService {
 	
-	
+	@Autowired	
 	  private  final CertificationRepository certificationRepository;
-	@Autowired
-	    public CertificationService ( CertificationRepository certificationRepository) {
-	        this.certificationRepository = certificationRepository;
-	    }
+	    
+	public CertificationService (CertificationRepository certificationRepository ) 
+	        {
+	        	this.certificationRepository = certificationRepository;
+	        }
+	    
 
 	    public List<Certification> getAllCertification() {
 	        return certificationRepository.findAll();
