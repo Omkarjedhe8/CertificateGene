@@ -22,13 +22,13 @@ import com.renocrewsoluations.certgenerator.service.ResultService;
 	
 
 @RestController
-@RequestMapping("/Result")
+@RequestMapping("/results")
 public class ResultController {
 
-    private final ResultService resultService;
-	private Long resultId;
-
     @Autowired
+    private final ResultService resultService;
+	
+
     public ResultController(ResultService resultService) {
         this.resultService = resultService;
     }
@@ -39,7 +39,7 @@ public class ResultController {
         return new ResponseEntity<>(results, HttpStatus.OK);
     }
 
-    @GetMapping("/Result/{id}")
+    @GetMapping("/{id}")
     public ResponseEntity<Result> getResultById(@PathVariable Long resultId) {
 		
 		Optional<Result> result = resultService.getResultById(resultId);
@@ -56,7 +56,7 @@ public class ResultController {
         return new ResponseEntity<>(createdResult, HttpStatus.CREATED);
     }
 
-    @PutMapping("/Result/{id}")
+    @PutMapping("/{id}")
     public ResponseEntity<Result> updateResult(
             @PathVariable("resultId") Long resultId, @RequestBody Result result) {
         Result updatedResult = resultService.updateResult(result);
@@ -67,8 +67,8 @@ public class ResultController {
         }
     }
 
-    @DeleteMapping("/Result/{id}")
-    public ResponseEntity<Void> deleteResult(@PathVariable("resultId") Long resultid) {
+    @DeleteMapping("/{id}")
+    public ResponseEntity<Void> deleteResult(@PathVariable("resultId") Long resultId) {
         boolean deleted = resultService.deleteResult(resultId);
         if (deleted) {
             return new ResponseEntity<>(HttpStatus.NO_CONTENT);
