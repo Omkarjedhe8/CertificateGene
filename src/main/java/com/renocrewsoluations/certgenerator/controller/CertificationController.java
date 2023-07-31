@@ -22,13 +22,13 @@ import com.renocrewsoluations.certgenerator.service.CertificationService;
 
 
 	@RestController
-	@RequestMapping("/Certification")
+	@RequestMapping("/certifications")
 	public class CertificationController {
 	    
+		@Autowired
 		private CertificationService certificationService;
 
-		@Autowired
-	    public CertificationController(CertificationService certificationService) {
+		    public CertificationController(CertificationService certificationService) {
 	        this.certificationService = certificationService;
 			}
 
@@ -38,7 +38,7 @@ import com.renocrewsoluations.certgenerator.service.CertificationService;
 	        return new ResponseEntity<>(certifications, HttpStatus.OK);
 	    }
 
-	    @GetMapping("/Certification/{id}")
+	    @GetMapping("{id}")
 	    public ResponseEntity<Certification> getCertificationById(@PathVariable Long certiId) {
 			
 			Optional<Certification> certification = certificationService.getCertificationById(certiId);
@@ -55,7 +55,7 @@ import com.renocrewsoluations.certgenerator.service.CertificationService;
 	        return new ResponseEntity<>(createdCertification, HttpStatus.CREATED);
 	    }
 
-	    @PutMapping("/Certification/{id}")
+	    @PutMapping("/{id}")
 	    public ResponseEntity<Certification> updateCertification(
 	            @PathVariable("certiId") Long certiId, @RequestBody Certification certification) {
 	    	Certification updatedCertification = certificationService.updateCertification(certification);
@@ -66,7 +66,7 @@ import com.renocrewsoluations.certgenerator.service.CertificationService;
 	        }
 	    }
 
-	    @DeleteMapping("/Certification/{id}")
+	    @DeleteMapping("/{id}")
 	    public ResponseEntity<Void> deleteCertification(@PathVariable("certiId")  Long certiId) {
 	        boolean deleted = certificationService.deleteCertification(certiId);
 	        if (deleted) {
