@@ -10,8 +10,9 @@ import com.renocrewsoluations.certgenerator.repository.ExamRepository;
 
 public class ExamService {
 
-	  private  ExamRepository examRepository;
 	@Autowired
+	  private  ExamRepository examRepository;
+
 	    public ExamService( ExamRepository examRepository) {
 	        this. examRepository =  examRepository;
 	    }
