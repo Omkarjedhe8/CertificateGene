@@ -11,9 +11,10 @@ import com.renocrewsoluations.certgenerator.repository.OrganizationRepository;
 public class OrganizationService {
 	
 	
-
-	  private OrganizationRepository organizationRepository;
 	@Autowired
+	  private OrganizationRepository organizationRepository;
+	
+	
 	    public OrganizationService( OrganizationRepository organizationRepository) {
 	        this.organizationRepository = organizationRepository;
 	    }
