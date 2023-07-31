@@ -19,7 +19,7 @@ import com.renocrewsoluations.certgenerator.entity.Exam;
 import com.renocrewsoluations.certgenerator.service.ExamService;
 
 @RestController
-@RequestMapping("/Exam")
+@RequestMapping("/exams")
 public class ExamController {
 
  
@@ -36,7 +36,7 @@ public class ExamController {
         return new ResponseEntity<>(exams, HttpStatus.OK);
     }
 
-    @GetMapping("/Exam/{id}")
+    @GetMapping("/{id}")
     public ResponseEntity<Exam> getExamById(@PathVariable Long examId) {
 		
 		Optional<Exam> exam = examService.getExamById(examId);
@@ -53,7 +53,7 @@ public class ExamController {
         return new ResponseEntity<>(createdExam, HttpStatus.CREATED);
     }
 
-    @PutMapping("/Exam/{id}")
+    @PutMapping("/{id}")
     public ResponseEntity<Exam> updateExam(@PathVariable("examId") Long examId, @RequestBody Exam exam) {
     	Exam updatedExam = examService.updateExam(exam);
         if (updatedExam != null) {
@@ -64,7 +64,7 @@ public class ExamController {
     }   
 
 
-    @DeleteMapping("/Exam/{id}")
+    @DeleteMapping("/{id}")
     public ResponseEntity<Void> deleteResult(@PathVariable("examId")  Long examId) {
         
 		boolean deleted = examService.deleteExam(examId);
