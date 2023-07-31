@@ -18,7 +18,7 @@ public class Result {
 	
 	@Id
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
-	private int resultId;
+	private Long resultId;
 	
 	@OneToOne
 	@JoinColumn(name="user_id")
@@ -36,20 +36,9 @@ public class Result {
 	}
 
 	
+	
 
-	public Exam getExamId() {
-		return examId;
-	}
-
-
-
-	public void setExamId(Exam examId) {
-		this.examId = examId;
-	}
-
-
-
-	public Result(int resultId, User id, Exam examId, int resultScore, Date resultDate) {
+	public Result(Long resultId, User id, Exam examId, int resultScore, Date resultDate) {
 		super();
 		this.resultId = resultId;
 		this.id = id;
@@ -60,37 +49,74 @@ public class Result {
 
 
 
-	public int getResultId() {
+
+	public Long getResultId() {
 		return resultId;
 	}
 
-	public void setResultId(int resultId) {
+
+
+
+	public void setResultId(Long resultId) {
 		this.resultId = resultId;
 	}
+
+
+
 
 	public User getId() {
 		return id;
 	}
 
+
+
+
 	public void setId(User id) {
 		this.id = id;
 	}
+
+
+
+
+	public Exam getExamId() {
+		return examId;
+	}
+
+
+
+
+	public void setExamId(Exam examId) {
+		this.examId = examId;
+	}
+
+
+
 
 	public int getResultScore() {
 		return resultScore;
 	}
 
+
+
+
 	public void setResultScore(int resultScore) {
 		this.resultScore = resultScore;
 	}
+
+
+
 
 	public Date getResultDate() {
 		return resultDate;
 	}
 
+
+
+
 	public void setResultDate(Date resultDate) {
 		this.resultDate = resultDate;
 	}
+
 
 
 
@@ -100,8 +126,6 @@ public class Result {
 				+ ", resultDate=" + resultDate + "]";
 	}
 
-	
-	
 	
 
 }
