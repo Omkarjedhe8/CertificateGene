@@ -19,17 +19,15 @@ import org.springframework.web.bind.annotation.RestController;
 import com.renocrewsoluations.certgenerator.entity.Organization;
 import com.renocrewsoluations.certgenerator.service.OrganizationService;
 
-
-//import com.renocrewsolutions.certgenerator.entity.Organization;
-
 	
 	@RestController
-	@RequestMapping("/Organization")
+	@RequestMapping("/organizations")
 public class OrganizationController {
 	
+		@Autowired
     private final OrganizationService organizationService;
 
-	    @Autowired
+	    
 	    public OrganizationController (OrganizationService organizationService) {
 	        this.organizationService= organizationService;
 	    }
@@ -40,7 +38,7 @@ public class OrganizationController {
 	        return new ResponseEntity<>(organizations, HttpStatus.OK);
 	    }
 
-	    @GetMapping("/Organization/{id}")
+	    @GetMapping("/{id}")
 	    public ResponseEntity<Organization> getOrganizationById(@PathVariable Long orgId) {
 	        return organizationService.getOrganizationById(orgId)
 	                .map(organization -> new ResponseEntity<>(organization, HttpStatus.OK))
@@ -53,14 +51,14 @@ public class OrganizationController {
 	        return new ResponseEntity<>(createdOrganization, HttpStatus.CREATED);
 	    }
 
-	    @PutMapping("/Organization/{id}")
+	    @PutMapping("/{id}")
 	    public ResponseEntity<Organization> updateOrganization(@PathVariable Long orgId, @RequestBody Organization organization) {
 	        organization.setOrgId(orgId);
 	        Organization updatedOrganization = organizationService.updateOrganization(organization);
 	        return new ResponseEntity<>(updatedOrganization, HttpStatus.OK);
 	    }
 
-	    @DeleteMapping("/Organization/{id}")
+	    @DeleteMapping("/{id}")
 	    public ResponseEntity<Void> deleteOrganization(@PathVariable Long orgId) {
 	    	organizationService.deleteOrganization(orgId);
 	        return new ResponseEntity<>(HttpStatus.NO_CONTENT);
