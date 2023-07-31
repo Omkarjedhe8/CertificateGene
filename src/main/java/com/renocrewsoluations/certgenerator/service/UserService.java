@@ -10,9 +10,10 @@ import com.renocrewsoluations.certgenerator.repository.UserRepository;
 
 public class UserService {
 	
+	@Autowired
 	  private final UserRepository userRepository;
 
-	    @Autowired
+	    
 	    public UserService(UserRepository userRepository) {
 	        this.userRepository = userRepository;
 	    }
@@ -36,6 +37,5 @@ public class UserService {
 	    public void deleteUser(Long id) {
 	        userRepository.deleteById(id);
 	    }
-
 
 }
