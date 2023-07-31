@@ -10,10 +10,10 @@ import com.renocrewsoluations.certgenerator.repository.ResultRepository;
 
 public class ResultService {
 	
-
+	@Autowired
 	  private  ResultRepository resultRepository;
-		@Autowired
-		    public ResultService(ResultRepository resultRepository) {
+		
+	public ResultService(ResultRepository resultRepository) {
 		        this.resultRepository = resultRepository;
 		    }
 
@@ -26,13 +26,13 @@ public class ResultService {
 				return resultRepository.findById(resultId);
 		    }
 
-		    public Result createResult(  Result  result){
-		        return resultRepository.save( result);
+		    public Result createResult( Result  result){
+		        return resultRepository.save(result);
 		    }
 		    
 
 		    public Result updateResult( Result  result) {
-		        return resultRepository.save( result);
+		        return resultRepository.save(result);
 		    }
 
 		    public boolean deleteResult(Long resultId) {
