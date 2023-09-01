@@ -18,7 +18,7 @@ public class UserService {
 	        this.userRepository = userRepository;
 	    }
 
-	    public List<User> getAllUsers() {
+	    public List<User> getAllUser() {
 	        return userRepository.findAll();
 	    }
 
@@ -37,5 +37,10 @@ public class UserService {
 	    public void deleteUser(Long id) {
 	        userRepository.deleteById(id);
 	    }
+
+		public List<User> getAllUsers() {
+			// TODO Auto-generated method stub
+			return null;
+		}
 
 }

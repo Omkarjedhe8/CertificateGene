@@ -4,15 +4,17 @@ import java.util.List;
 import java.util.Optional;
 
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.stereotype.Service;
 
 import com.renocrewsoluations.certgenerator.entity.Certification;
 import com.renocrewsoluations.certgenerator.repository.CertificationRepository;
 
+@Service
 public class CertificationService {
 	
-	@Autowired	
+	
 	  private  final CertificationRepository certificationRepository;
-	    
+	  @Autowired	    
 	public CertificationService (CertificationRepository certificationRepository ) 
 	        {
 	        	this.certificationRepository = certificationRepository;

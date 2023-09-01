@@ -5,25 +5,28 @@ import java.util.Optional;
 
 import org.springframework.beans.factory.annotation.Autowired;
 
+import com.renocrewsoluations.certgenerator.entity.Exam;
+//import com.renocrewsoluations.certgenerator.entity.Exam;
 import com.renocrewsoluations.certgenerator.entity.Organization;
 import com.renocrewsoluations.certgenerator.repository.OrganizationRepository;
+import org.springframework.stereotype.Service;
 
-public class OrganizationService {
+@Service
+public class OrganizationService {       
 	
 	
-	@Autowired
-	  private OrganizationRepository organizationRepository;
+		  private OrganizationRepository organizationRepository;
 	
-	
+		  @Autowired
 	    public OrganizationService( OrganizationRepository organizationRepository) {
 	        this.organizationRepository = organizationRepository;
 	    }
 
-	    public List<Organization> getAllOrganization() {
+	    public List<Exam> getAllOrganization() {
 	        return organizationRepository.findAll();
 	    }
 
-	    public Optional<Organization> getOrganizationById(Long orgId) {
+	    public Optional<Exam> getOrganizationById(Long orgId) {
 		
 			return organizationRepository.findById(orgId);
 	    }
@@ -34,7 +37,7 @@ public class OrganizationService {
 	    
 
 	    public Organization updateOrganization(Organization organization) {
-	        return organizationRepository.save(organization);
+	        return organizationRepository.saveAll(organization);
 	    }
 
 	    public boolean deleteOrganization(Long orgId) {

@@ -16,30 +16,32 @@ import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
+import com.renocrewsoluations.certgenerator.entity.Exam;
 import com.renocrewsoluations.certgenerator.entity.Organization;
 import com.renocrewsoluations.certgenerator.service.OrganizationService;
 
 	
 	@RestController
-	@RequestMapping("/organizations")
+	@RequestMapping("/o")
 public class OrganizationController {
 	
-		@Autowired
+		
     private final OrganizationService organizationService;
 
-	    
+    @Autowired
 	    public OrganizationController (OrganizationService organizationService) {
 	        this.organizationService= organizationService;
 	    }
 
 	    @GetMapping
-	    public ResponseEntity<List<Organization>> getAllOrganization() {
-	        List<Organization> organizations = organizationService.getAllOrganization();
-	        return new ResponseEntity<>(organizations, HttpStatus.OK);
+	    public List<Exam> getAllOrganization() {
+	        List<Exam> exams = organizationService.getAllOrganization();
+	        //return new ResponseEntity<>(, HttpStatus.OK);
+			return exams;
 	    }
 
 	    @GetMapping("/{id}")
-	    public ResponseEntity<Organization> getOrganizationById(@PathVariable Long orgId) {
+	    public ResponseEntity<Exam> getOrganizationById(@PathVariable Long orgId) {
 	        return organizationService.getOrganizationById(orgId)
 	                .map(organization -> new ResponseEntity<>(organization, HttpStatus.OK))
 	                .orElse(new ResponseEntity<>(HttpStatus.NOT_FOUND));

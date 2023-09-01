@@ -8,11 +8,15 @@ import org.springframework.beans.factory.annotation.Autowired;
 import com.renocrewsoluations.certgenerator.entity.Result;
 import com.renocrewsoluations.certgenerator.repository.ResultRepository;
 
+import org.springframework.stereotype.Service;
+
+@Service
 public class ResultService {
 	
-	@Autowired
+	
 	  private  ResultRepository resultRepository;
-		
+	
+	  @Autowired
 	public ResultService(ResultRepository resultRepository) {
 		        this.resultRepository = resultRepository;
 		    }

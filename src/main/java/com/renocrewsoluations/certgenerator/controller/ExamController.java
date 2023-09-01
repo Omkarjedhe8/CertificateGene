@@ -19,20 +19,19 @@ import com.renocrewsoluations.certgenerator.entity.Exam;
 import com.renocrewsoluations.certgenerator.service.ExamService;
 
 @RestController
-@RequestMapping("/exams")
+@RequestMapping("/e")
 public class ExamController {
 
- 
-    private ExamService examService;
+	    private ExamService examService;
 
-	@Autowired
+	    @Autowired
     public ExamController(ExamService examService) {
         this.examService = examService;
     }
 
     @GetMapping
     public ResponseEntity<List<Exam>> getAllExams() {
-        List<Exam> exams = examService.getAllExam();
+        List<Exam> exams = (List<Exam>) examService.getAllExam();
         return new ResponseEntity<>(exams, HttpStatus.OK);
     }
 
@@ -45,17 +44,17 @@ public class ExamController {
         } else {
             return new ResponseEntity<Exam>(HttpStatus.NOT_FOUND);
         }
-    }
+    } 
 
-    @PostMapping
+    @PostMapping()
     public ResponseEntity<Exam> createExam(@RequestBody Exam  exam ) {
-    	Exam createdExam = examService.createExam(exam);
+    	Exam createdExam = examService.saveAll(exam);
         return new ResponseEntity<>(createdExam, HttpStatus.CREATED);
     }
 
     @PutMapping("/{id}")
     public ResponseEntity<Exam> updateExam(@PathVariable("examId") Long examId, @RequestBody Exam exam) {
-    	Exam updatedExam = examService.updateExam(exam);
+    	Exam updatedExam = examService.save(exam);
         if (updatedExam != null) {
             return new ResponseEntity<>(updatedExam, HttpStatus.OK);
         } else {

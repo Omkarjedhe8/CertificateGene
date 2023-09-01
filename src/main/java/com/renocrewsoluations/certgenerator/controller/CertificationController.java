@@ -22,7 +22,7 @@ import com.renocrewsoluations.certgenerator.service.CertificationService;
 
 
 	@RestController
-	@RequestMapping("/certifications")
+	@RequestMapping("/c")
 	public class CertificationController {
 	    
 		@Autowired
@@ -38,7 +38,7 @@ import com.renocrewsoluations.certgenerator.service.CertificationService;
 	        return new ResponseEntity<>(certifications, HttpStatus.OK);
 	    }
 
-	    @GetMapping("{id}")
+	    @GetMapping("/{id}")
 	    public ResponseEntity<Certification> getCertificationById(@PathVariable Long certiId) {
 			
 			Optional<Certification> certification = certificationService.getCertificationById(certiId);

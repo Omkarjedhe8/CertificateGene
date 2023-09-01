@@ -22,13 +22,13 @@ import com.renocrewsoluations.certgenerator.service.ResultService;
 	
 
 @RestController
-@RequestMapping("/results")
+@RequestMapping("/result")
 public class ResultController {
 
-    @Autowired
+    
     private final ResultService resultService;
 	
-
+    @Autowired
     public ResultController(ResultService resultService) {
         this.resultService = resultService;
     }
