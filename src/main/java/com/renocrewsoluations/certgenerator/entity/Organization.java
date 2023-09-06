@@ -3,23 +3,21 @@ package com.renocrewsoluations.certgenerator.entity;
 import jakarta.persistence.GeneratedValue;
 import jakarta.persistence.GenerationType;
 import jakarta.persistence.Id;
-
 import jakarta.persistence.Table;
 import jakarta.persistence.Entity;
-
 
 @Entity
 @Table(name = "organizations")
 public class Organization {
+
+    @Id
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
+    private Long orgId;
+    private String orgName;
+    private String orgAddress;
+    private String orgContact;
 	
-	@Id
-	@GeneratedValue(strategy = GenerationType.IDENTITY)
-	private Long orgId;
-	private String orgName;
-	private String orgAddress;
-	private String orgContact;
-	
-	public Organization() {
+    public Organization() {
 		super();
 		// TODO Auto-generated constructor stub
 	}
@@ -67,10 +65,12 @@ public class Organization {
 	@Override
 	public String toString() {
 		return "Organization [orgId=" + orgId + ", orgName=" + orgName + ", orgAddress=" + orgAddress + ", orgContact="
-				+ orgContact + "]";
+				+ orgContact + ", getOrgId()=" + getOrgId() + ", getOrgName()=" + getOrgName() + ", getOrgAddress()="
+				+ getOrgAddress() + ", getOrgContact()=" + getOrgContact() + ", getClass()=" + getClass()
+				+ ", hashCode()=" + hashCode() + ", toString()=" + super.toString() + "]";
 	}
+    
+    
+    
 	
-	
-	
-
 }

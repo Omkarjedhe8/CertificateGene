@@ -1,1 +1,2 @@
 rootProject.name = 'CertificateGen'
+./gradlew clean build

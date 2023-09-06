@@ -1,24 +1,24 @@
 package com.renocrewsoluations.certgenerator.repository;
 
+
 import java.util.Optional;
 
-//import org.springframework.data.jpa.repository.JpaRepository;
-import org.springframework.data.repository.CrudRepository;
-import org.springframework.stereotype.Repository;
+import org.springframework.data.jpa.repository.JpaRepository;
 
 import com.renocrewsoluations.certgenerator.entity.Exam;
-//import com.renocrewsoluations.certgenerator.entity.Organization;
+
+import org.springframework.stereotype.Repository;
 
 @Repository
-public interface ExamRepository extends CrudRepository<Exam, Long> {
+public interface ExamRepository extends JpaRepository<Exam, Long> {
 
-	 public Optional<Exam> findByexamId(Long examId);
-		
-	public Exam deleteByexamId(Long examId);
+	Optional<Exam> findById(Long examId);
 
-	public Exam saveAll(Exam exam);	
+	void deleteById(Long examId);
+
+	Exam save(Exam exam);
+
 	
-	//public Exam save(Exam exam);
 
 	 
 }

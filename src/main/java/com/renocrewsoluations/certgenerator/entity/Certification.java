@@ -1,10 +1,10 @@
 package com.renocrewsoluations.certgenerator.entity;
 
+import jakarta.persistence.Entity;
 import jakarta.persistence.GeneratedValue;
 import jakarta.persistence.GenerationType;
 import jakarta.persistence.Id;
 import jakarta.persistence.Table;
-import jakarta.persistence.Entity;
 
 
 @Entity
@@ -13,8 +13,7 @@ public class Certification {
 	
 		@Id
 		@GeneratedValue(strategy = GenerationType.IDENTITY)
-		
-		private int certiId;
+		private Long certiId;
 		private String certiName;
 		private String certiDescription;
 
@@ -25,7 +24,7 @@ public class Certification {
 			// TODO Auto-generated constructor stub
 		}
 
-		public Certification(int certiId, String certiName, String certiDescription, double certiCost) {
+		public Certification(Long certiId, String certiName, String certiDescription, double certiCost) {
 			super();
 			this.certiId = certiId;
 			this.certiName = certiName;
@@ -33,12 +32,12 @@ public class Certification {
 			this.certiCost = certiCost;
 		}
 
-		public int getCertiId() {
+		public Long getCertiId() {
 			return certiId;
 		}
 
-		public void setCertiId(int certiId) {
-			this.certiId = certiId;
+		public void setCertiId(Long id) {
+			this.certiId = id;
 		}
 
 		public String getCertiName() {
@@ -70,6 +69,6 @@ public class Certification {
 			return "Certification [certiId=" + certiId + ", certiName=" + certiName + ", certiDescription="
 					+ certiDescription + ", certiCost=" + certiCost + "]";
 		}
-		
+
 }
 

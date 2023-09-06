@@ -8,10 +8,14 @@ import org.springframework.stereotype.Repository;
 import com.renocrewsoluations.certgenerator.entity.Certification;
 
 @Repository
-public interface CertificationRepository extends JpaRepository<Certification, Long> {
+public interface CertificationRepository  extends JpaRepository<Certification, Long> {
+
+	Optional<Certification> findById(Long certiId);
+
+	void deleteById(Long certiId);
+
+	Certification save(Certification certification);
+
 	
-	 public Optional<Certification> findById(Long certiId);
-	  public void deleteById(Long certiId);
-
-
+	
 }

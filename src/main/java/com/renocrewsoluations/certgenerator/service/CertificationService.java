@@ -11,39 +11,44 @@ import com.renocrewsoluations.certgenerator.repository.CertificationRepository;
 
 @Service
 public class CertificationService {
-	
-	
-	  private  final CertificationRepository certificationRepository;
-	  @Autowired	    
-	public CertificationService (CertificationRepository certificationRepository ) 
-	        {
-	        	this.certificationRepository = certificationRepository;
-	        }
-	    
+	 @Autowired
+    private final CertificationRepository certificationRepository;
 
-	    public List<Certification> getAllCertification() {
-	        return certificationRepository.findAll();
-	    }
- 
-	    public Optional<Certification> getCertificationById(Long certiId) {
-		
-			return certificationRepository.findById(certiId);
-	    }
+    
+    public CertificationService(CertificationRepository certificationRepository) {
+        this.certificationRepository = certificationRepository;
+    }
 
-	    public Certification createCertification( Certification certification){
-	        return certificationRepository.save(certification);
-	    }
-	    
+    public List<Certification> getAllCertification() {
+        return certificationRepository.findAll();
+    }
 
-	    public Certification updateCertification(Certification certification) {
-	        return certificationRepository.save(certification);
-	    }
+    public Optional<Certification> getCertificationById(Long certiId) {
+        return certificationRepository.findById(certiId);
+    }
 
-	    public boolean deleteCertification(Long certiId) {
-	        certificationRepository.deleteById(certiId);
-			return false;
-	    }
+    public Certification createCertification(Certification certification) {
+        return certificationRepository.save(certification);
+    }
 
+    public Certification updateCertification(Certification certification) {
+        // Check if the certification with the given ID exists
+        Optional<Certification> existingCertification = certificationRepository.findById(certification.getCertiId());
+        if (existingCertification.isPresent()) {
+            return certificationRepository.save(certification);
+        } else {
+            return null; // Certification not found
+        }
+    }
 
-
+    public boolean deleteCertification(Long certiId) {
+        // Check if the certification with the given ID exists
+        Optional<Certification> existingCertification = certificationRepository.findById(certiId);
+        if (existingCertification.isPresent()) {
+            certificationRepository.deleteById(certiId);
+            return true; // Deletion successful
+        } else {
+            return false; // Certification not found, deletion failed
+        }
+    }
 }

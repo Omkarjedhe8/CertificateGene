@@ -8,51 +8,34 @@ import org.springframework.stereotype.Service;
 import com.renocrewsoluations.certgenerator.entity.Exam;
 import com.renocrewsoluations.certgenerator.repository.ExamRepository;
 
-
 @Service
 public class ExamService {
 
-		  private  ExamRepository examRepository;
-		  @Autowired
-	    public ExamService( ExamRepository examRepository) {
-	        this. examRepository =  examRepository;
-	    }
+    @Autowired
+    private ExamRepository examRepository;
 
-	    public Iterable<Exam> getAllExam() {
-	        return  examRepository.findAll();
-	    }
+    public ExamService(ExamRepository examRepository) {
+        this.examRepository = examRepository;
+    }
 
-	    public Optional<Exam> getExamById(Long examId) {
-		  
-			return examRepository.findById(examId);
-	    }
+    public Iterable<Exam> getAllExam() {
+        return examRepository.findAll();
+    }
 
-    public Exam createExam( Exam exam){
-	        return examRepository.saveAll(exam);
-	    }
-	    
+    public Optional<Exam> getExamById(Long examId) {
+        return examRepository.findById(examId);
+    }
 
-	    public Exam updateExam(Exam exam) {
-	        return examRepository.save(exam);
-	    }
+    public Exam createExam(Exam exam) {
+        return examRepository.save(exam);
+    }
 
-	    public boolean deleteExam(Long examId) {
-	    	 examRepository.deleteById(examId);
-			return false;
-	    }
+    public Exam updateExam(Exam exam) {
+        return examRepository.save(exam);
+    }
 
-		public Exam saveAll(Exam exam) {
-			// TODO Auto-generated method stub
-			return null;
-		}
-
-		public Exam save(Exam exam) {
-			// TODO Auto-generated method stub
-			return null;
-		}
-
-	
-
-	
-	
+    public boolean deleteExam(Long examId) {
+        examRepository.deleteById(examId);
+        return true;
+    }
 }

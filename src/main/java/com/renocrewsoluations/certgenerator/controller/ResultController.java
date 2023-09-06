@@ -1,8 +1,6 @@
 package com.renocrewsoluations.certgenerator.controller;
 
-
 import java.util.List;
-import java.util.Optional;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
@@ -19,35 +17,28 @@ import org.springframework.web.bind.annotation.RestController;
 import com.renocrewsoluations.certgenerator.entity.Result;
 import com.renocrewsoluations.certgenerator.service.ResultService;
 
-	
-
 @RestController
 @RequestMapping("/result")
 public class ResultController {
 
-    
-    private final ResultService resultService;
-	
     @Autowired
+    private final ResultService resultService;
+
     public ResultController(ResultService resultService) {
         this.resultService = resultService;
     }
 
     @GetMapping
     public ResponseEntity<List<Result>> getAllResults() {
-        List<Result> results = resultService.getAllResult();
+        List<Result> results = resultService.getAllResults();
         return new ResponseEntity<>(results, HttpStatus.OK);
     }
 
     @GetMapping("/{id}")
-    public ResponseEntity<Result> getResultById(@PathVariable Long resultId) {
-		
-		Optional<Result> result = resultService.getResultById(resultId);
-        if (result != null) {
-            return new ResponseEntity<Result>(HttpStatus.OK);
-        } else {
-            return new ResponseEntity<Result>(HttpStatus.NOT_FOUND);
-        }
+    public ResponseEntity<Result> getResultById(@PathVariable Long id) {
+        return resultService.getResultById(id)
+                .map(result -> new ResponseEntity<>(result, HttpStatus.OK))
+                .orElse(new ResponseEntity<>(HttpStatus.NOT_FOUND));
     }
 
     @PostMapping
@@ -57,26 +48,19 @@ public class ResultController {
     }
 
     @PutMapping("/{id}")
-    public ResponseEntity<Result> updateResult(
-            @PathVariable("resultId") Long resultId, @RequestBody Result result) {
+    public ResponseEntity<Result> updateResult(@PathVariable Long id, @RequestBody Result result) {
+        result.setResultId(id);
         Result updatedResult = resultService.updateResult(result);
-        if (updatedResult != null) {
-            return new ResponseEntity<>(updatedResult, HttpStatus.OK);
-        } else {
-            return new ResponseEntity<>(HttpStatus.NOT_FOUND);
-        }
+        return new ResponseEntity<>(updatedResult, HttpStatus.OK);
     }
 
     @DeleteMapping("/{id}")
-    public ResponseEntity<Void> deleteResult(@PathVariable("resultId") Long resultId) {
-        boolean deleted = resultService.deleteResult(resultId);
+    public ResponseEntity<Void> deleteResult(@PathVariable Long id) {
+        boolean deleted = resultService.deleteResult(id);
         if (deleted) {
             return new ResponseEntity<>(HttpStatus.NO_CONTENT);
         } else {
             return new ResponseEntity<>(HttpStatus.NOT_FOUND);
         }
     }
-
-
 }
-

@@ -4,45 +4,39 @@ import java.util.List;
 import java.util.Optional;
 
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.stereotype.Service;
 
 import com.renocrewsoluations.certgenerator.entity.Result;
 import com.renocrewsoluations.certgenerator.repository.ResultRepository;
 
-import org.springframework.stereotype.Service;
-
 @Service
 public class ResultService {
 	
-	
-	  private  ResultRepository resultRepository;
-	
-	  @Autowired
-	public ResultService(ResultRepository resultRepository) {
-		        this.resultRepository = resultRepository;
-		    }
+	@Autowired
+    private final ResultRepository resultRepository;
 
-		    public List<Result> getAllResult() {
-		        return resultRepository.findAll();
-		    }
+       public ResultService(ResultRepository resultRepository) {
+        this.resultRepository = resultRepository;
+    }
 
-		    public Optional<Result> getResultById(Long resultId) {
-			
-				return resultRepository.findById(resultId);
-		    }
+    public List<Result> getAllResults() {
+        return resultRepository.findAll();
+    }
 
-		    public Result createResult( Result  result){
-		        return resultRepository.save(result);
-		    }
-		    
+    public Optional<Result> getResultById(Long resultId) {
+        return resultRepository.findByResultId(resultId);
+    }
 
-		    public Result updateResult( Result  result) {
-		        return resultRepository.save(result);
-		    }
+    public Result createResult(Result result) {
+        return resultRepository.save(result);
+    }
 
-		    public boolean deleteResult(Long resultId) {
-		    	resultRepository.deleteById(resultId);
-				return false;
-		    }
+    public Result updateResult(Result result) {
+        return resultRepository.save(result);
+    }
 
-
+    public boolean deleteResult(Long resultId) {
+        resultRepository.deleteByResultId(resultId);
+        return true;
+    }
 }
